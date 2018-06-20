@@ -1,6 +1,6 @@
 # Microservice Example Application
 
-This repositry contains an example microservice application with three
+This repository contains an example microservice application with three
 components. `docker-compose` coordinates the Docker containers. The
 `server` container is a simple Node.js application. It accepts a POST
 request to increment a counter and a GET request to retrieve the
