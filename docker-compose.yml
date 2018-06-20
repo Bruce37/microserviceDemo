@@ -1,0 +1,29 @@
+version: '2'
+
+services:
+  redis:
+    image: redis
+
+  server:
+    depends_on:
+      - redis
+    build: server/
+    image: slashdeploy/microservice-example:server-v2
+    environment:
+      REDIS_URL: redis://redis:6379
+
+  counter:
+    depends_on:
+      - server
+    build: counter/
+    image: slashdeploy/microservice-example:counter-v2
+    environment:
+      API_URL: http://server:8080
+
+  poller:
+    depends_on:
+      - server
+    build: poller/
+    image: slashdeploy/microservice-example:poller-v2
+    environment:
+      API_URL: http://server:8080
